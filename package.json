@@ -1,0 +1,43 @@
+{
+  "name": "blackthorn-cart",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start:dev": "tsnd --transpile-only src/server.ts",
+    "start": "node dist/server.js",
+    "lint": "eslint .",
+    "build": "rm -rf ./dist/ && tsc",
+    "typeorm": "typeorm-ts-node-commonjs -d ./src/data-source.ts",
+    "migration:gen": "read name && yarn typeorm migration:generate ./src/migrations/$name",
+    "migration:run:dev": "yarn typeorm migration:run",
+    "migration:revert": "yarn typeorm migration:revert",
+    "migration:run": "node_modules/typeorm/cli.js -d ./src/data-source.js migration:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fastify/cors": "^8.3.0",
+    "@types/node": "^18.13.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@fastify/swagger": "^8.8.0",
+    "@fastify/swagger-ui": "^1.9.3",
+    "@fastify/type-provider-typebox": "^3.3.0",
+    "@sinclair/typebox": "^0.29.6",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.21.0",
+    "fastify-plugin": "^4.5.1",
+    "pg": "^8.11.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.17"
+  }
+}

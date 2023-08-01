@@ -1,0 +1,33 @@
+// Creating tables
+Table carts as C {
+  id UUID [pk, increment]
+  total float8 [not null]
+  subtotal float8 [not null]
+  discount float8
+  taxes float8
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table items as I {
+  id UUID [pk, increment]
+  name varchar[100] [not null]
+  price float8 [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table carts_items as CI {
+  id UUID [pk, increment]
+  cart_id UUID [not null]
+  item_id UUID [not null]
+  quantity integer [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+Ref: C.id > CI.cart_id
+Ref: I.id > CI.item_id
